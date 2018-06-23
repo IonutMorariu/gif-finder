@@ -11,12 +11,19 @@ input.addEventListener('keyup', event => {
 });
 
 const searchTerm = async term => {
-	const url = `https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${term}&limit=25&offset=0&rating=G&lang=en`;
+	const url = `https://api.giphy.com/v1/gifs/search?api_key=${key}&q=${term}&limit=50&offset=0&rating=G&lang=en`;
 	const response = await fetch(url, { method: 'GET' });
 	const data = await response.json();
-	renderData(data);
+	const container = document.querySelector('.gallery');
+	container.innerHTML = '';
+	renderData(data, container);
 };
 
-const renderData = data => {
-	console.log(data);
+const renderData = (data, container) => {
+	data.data.forEach(element => {
+		const img = document.createElement('img');
+		img.classList.add('gallery__item');
+		img.src = element.images.original.url;
+		container.appendChild(img);
+	});
 };

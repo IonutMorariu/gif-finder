@@ -95,3 +95,17 @@ body {
     /* Firefox 18- */
     color: #757575;
 }
+
+.gallery {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: 150px;
+    grid-auto-flow: row dense;
+}
+
+.gallery__item {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
